@@ -1,0 +1,12 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 80px;
+
+    .logo {
+        font-size: 24px;
+        font-weight: 600;
+        color: white;
+    }
+}

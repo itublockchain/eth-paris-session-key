@@ -1,10 +1,14 @@
 import styles from "./Main.module.scss";
-import { Example } from "components";
-
+import { Cards, Example, Navbar } from "components";
+import BACKGROUND from "assets/background.png";
 const Main = () => {
   return (
     <div className={styles.wrapper}>
-      <Example />
+      <div className={styles.components}>
+        <Navbar />
+        <Cards location="TOP" />
+      </div>
+      <img src={BACKGROUND} className={styles.background} alt="background" />
     </div>
   );
 };
