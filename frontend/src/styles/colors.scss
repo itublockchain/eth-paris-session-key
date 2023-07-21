@@ -1,0 +1,22 @@
+body.light {
+  // Global
+  --body-bg-1: #F9F9F9;
+
+}
+
+body.dark {
+  // Misc
+  --body-bg-1: #0E2038;
+}
+
+.link {
+  text-decoration: none !important;
+  color: inherit;
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text);
+}
