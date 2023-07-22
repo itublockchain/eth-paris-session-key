@@ -2,6 +2,7 @@
 pragma solidity ^0.8.17;
 
 import "./UserOperation.sol";
+import "./SessionKeyManager.sol";
 
 interface ISafe {
     /// @dev Allows a Module to execute a Safe transaction without any further confirmations.
@@ -14,26 +15,20 @@ interface ISafe {
         returns (bool success);
 }
 
-interface ISessionKeyManager {
-    function validateUserOp(UserOperation calldata userOp, bytes32 userOpHash)
-        external
-        view
-        returns (uint256 validationData);
-}
-
 contract Safe4337SessionKeyModule {
     address public immutable entryPoint;
-    ISessionKeyManager public immutable sessionKeyManager;
+    SessionKeyManager public immutable sessionKeyManager;
 
-    constructor(address _entryPoint, address _sessionKeyManager) {
+    constructor(address _entryPoint) {
         entryPoint = _entryPoint;
-        sessionKeyManager = ISessionKeyManager(_sessionKeyManager);
+        sessionKeyManager = new SessionKeyManager(address(this));
     }
 
     function validateUserOp(UserOperation calldata userOp, bytes32 userOpHash, uint256 missingAccountFunds)
         external
         returns (uint256 validationData)
     {
+        require(msg.sender == entryPoint, "only entry point");
         validationData = sessionKeyManager.validateUserOp(userOp, userOpHash);
 
         if (validationData != 0) {
@@ -49,7 +44,12 @@ contract Safe4337SessionKeyModule {
     }
 
     function execTransaction(address safeAddress, address to, uint256 value, bytes calldata data) external payable {
+        require(msg.sender == entryPoint, "only entry point");
         ISafe safe = ISafe(safeAddress);
         require(safe.execTransactionFromModule(to, value, data, 0), "tx failed");
+    }
+
+    function setMerkleRoot(bytes32 merkleRoot) external {
+        sessionKeyManager.setMerkleRootSafe(msg.sender, merkleRoot);
     }
 }

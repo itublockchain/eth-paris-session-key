@@ -36,6 +36,11 @@ contract SessionKeyManager {
      * Info about session keys is stored as root of the merkle tree built over the session keys
      */
     mapping(address => SessionStorage) internal userSessions;
+    address public immutable safeSessionModule;
+
+    constructor(address _safeSessionModule) {
+        safeSessionModule = _safeSessionModule;
+    }
 
     /**
      * @dev returns the SessionStorage object for a given smartAccount
@@ -52,6 +57,11 @@ contract SessionKeyManager {
      */
     function setMerkleRoot(bytes32 _merkleRoot) external {
         userSessions[msg.sender].merkleRoot = _merkleRoot;
+    }
+
+    function setMerkleRootSafe(address _safe, bytes32 _merkleRoot) external {
+        require(msg.sender == safeSessionModule, "only safe session module");
+        userSessions[_safe].merkleRoot = _merkleRoot;
     }
 
     /**
