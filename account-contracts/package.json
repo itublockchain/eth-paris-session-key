@@ -1,19 +1,23 @@
 {
-  "name": "account-contracts",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@nomicfoundation/hardhat-toolbox": "^3.0.0",
-    "hardhat": "^2.17.0"
-  },
-  "dependencies": {
-    "@openzeppelin/contracts": "^4.9.2"
-  }
+    "name": "account-contracts",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "ethers": "^5.7.0",
+        "hardhat": "^2.17.0"
+    },
+    "dependencies": {
+        "@openzeppelin/contracts": "^4.9.2",
+        "@safe-global/api-kit": "^1.3.0",
+        "@safe-global/protocol-kit": "^1.2.0",
+        "@safe-global/safe-core-sdk-types": "^2.2.0",
+        "dotenv": "^16.3.1"
+    }
 }
