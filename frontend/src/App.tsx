@@ -1,12 +1,20 @@
 import { useInitialTheme } from "hooks/useInitialTheme";
-import { Main } from "pages";
+import { Main, CardSession } from "pages";
 import "@rainbow-me/rainbowkit/styles.css";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
 import { foundry, goerli, mainnet } from "wagmi/chains";
 import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
-
+import { PATHS } from "constants/paths";
+import {
+  BrowserRouter,
+  Navigate,
+  Route,
+  Routes,
+  useLocation,
+} from "react-router-dom";
+import { useState, useEffect } from "react";
 const walletConnectProjectId = "5d2bcc3aee4782901664d9069ae1f939";
 
 export const { chains, publicClient, webSocketPublicClient } = configureChains(
@@ -39,11 +47,33 @@ function App() {
     <div>
       <WagmiConfig config={config}>
         <RainbowKitProvider chains={chains}>
-          <Main />
+          <BrowserRouter>
+            <Routes>
+              <Route path={PATHS.fight} element={<Main />} />
+              <Route path={PATHS.select} element={<CardSession />} />
+
+              <Route path="*" element={<div>Error</div>} />
+            </Routes>
+            <NavigationAnimator />
+          </BrowserRouter>
         </RainbowKitProvider>
       </WagmiConfig>
     </div>
   );
 }
+
+const NavigationAnimator = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    document.body.animate([{ opacity: 0.8 }, { opacity: 1 }], {
+      duration: 200,
+      fill: "forwards",
+    });
+    window.scrollTo({ top: 0 });
+  }, [pathname]);
+
+  return null;
+};
 
 export default App;

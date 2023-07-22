@@ -6,6 +6,7 @@ const Navbar = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.logo}>CardSession</div>
+      <div>-</div>
       <ConnectButton />
     </div>
   );
