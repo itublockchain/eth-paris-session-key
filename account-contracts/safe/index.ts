@@ -28,5 +28,5 @@ console.log(`https://app.safe.global/gor:${safeAddress}`);
 
 const moduleAddress = "0x";
 const tx = await safe.createEnableModuleTx(moduleAddress);
-const txResponse = await safeSdk.executeTransaction(safeTransaction);
+const txResponse = await safe.executeTransaction(safeTransaction);
 await txResponse.transactionResponse?.wait();
