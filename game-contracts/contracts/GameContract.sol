@@ -126,14 +126,7 @@ contract CardGame {
         } else {
             cards[defenderId].health -= cards[attackerId].power;
         }
-        // Change turn after each attack
-        if (user1IsTurn) {
-            user1IsTurn = false;
-            user2IsTurn = true;
-        } else {
-            user2IsTurn = false;
-            user1IsTurn = true;
-        }
+
         emit GameOvered(winner);
     }
 
