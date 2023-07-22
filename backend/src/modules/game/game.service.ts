@@ -24,7 +24,9 @@ export class GameService {
             ABI.factory,
             this.wallet,
         );
-        
+
+        // const tx = await factoryContract.getLast
+
         return 'account';
     }
 }

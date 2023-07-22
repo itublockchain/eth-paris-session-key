@@ -24,4 +24,9 @@ contract GameFactory {
         require(index < games.length, "Invalid index");
         return address(games[index]);
     }
+
+    function getLastGameAddress() public view returns (address) {
+        require(games.length > 0, "No games");
+        return address(games[games.length - 1]);
+    }
 }
