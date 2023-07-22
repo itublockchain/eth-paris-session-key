@@ -17,7 +17,7 @@ struct UserOperation {
     bytes signature;
 }
 
-contract ERC20SessionValidationModule {
+contract GameSessionValidationModule {
     /**
      * @dev validates if the _op (UserOperation) matches the SessionKey permissions
      * and that _op has been signed by this SessionKey
