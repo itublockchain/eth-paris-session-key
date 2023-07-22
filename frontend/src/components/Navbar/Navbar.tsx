@@ -8,15 +8,7 @@ type NavbarProps = {
 };
 const Navbar = ({ openModal }: NavbarProps) => {
   const { address } = useAccount();
-  const {
-    data: factoryData,
-    isError,
-    isLoading,
-  } = useContractRead({
-    address: ADDRESS.factory,
-    abi: ABI.factory,
-    functionName: "createGame",
-  });
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.logo}>CardSession</div>

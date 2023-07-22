@@ -106,7 +106,10 @@ export class GameService {
         for (let i = 0; i < cardIdsA.length; i++) {
             try {
                 const card = await gameContract.cards(cardIdsA[i]);
-                cards[0].push(setCard(card, user1));
+                const result = setCard(card, user1);
+                if (result.isAlive) {
+                    cards[0].push(result);
+                }
             } catch (e) {
                 console.log(e);
             }
@@ -116,7 +119,10 @@ export class GameService {
         for (let i = 0; i < cardIdsD.length; i++) {
             try {
                 const card = await gameContract.cards(cardIdsD[i]);
-                cards[1].push(setCard(card, user2));
+                const result = setCard(card, user2);
+                if (result.isAlive) {
+                    cards[1].push(result);
+                }
             } catch (e) {
                 console.log(e);
             }

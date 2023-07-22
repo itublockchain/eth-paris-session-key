@@ -34,7 +34,7 @@ const CardSelection = () => {
       <button
         className={styles.button}
         onClick={() => {
-          console.log(selectedCard);
+          window.location.href = "/fight";
         }}
       >
         Start

@@ -30,6 +30,6 @@ export const apiGetCardGameStatus = async (
 
 export const apiGetLiveCards = async (
   address: string
-): Promise<AxiosResponse<Array<Cards>>> => {
-  return await axios.get(API.getLiveCards(address, ));
+): Promise<AxiosResponse<Array<Array<Cards>>>> => {
+  return await axios.get(API.getLiveCards(address));
 };

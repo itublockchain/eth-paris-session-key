@@ -7,8 +7,9 @@ export type Cards = {
   id: number;
   health: number;
   power: number;
-  isTaken: boolean;
-  isAlive: boolean;
+  isTaken?: boolean;
+  isAlive?: boolean;
+  address?: string;
 };
 
 export const GameStatus = ["NOTSTARTED", "STARTED", "FINISHED"];
