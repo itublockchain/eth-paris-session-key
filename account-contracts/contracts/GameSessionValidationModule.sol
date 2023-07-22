@@ -32,5 +32,15 @@ contract ERC20SessionValidationModule {
         bytes32 _userOpHash,
         bytes calldata _sessionKeyData,
         bytes calldata _sessionKeySignature
-    ) external view returns (bool) {}
+    ) external view returns (bool) {
+        address sessionKey = address(bytes20(_sessionKeyData[0:20]));
+        address expectedGameContract = address(bytes20(_sessionKeyData[20:40]));
+        (address actualGameContract, uint256 callValue,) = abi.decode(
+            _op.callData[4:], // skip selector
+            (address, uint256, bytes)
+        );
+        require(actualGameContract == expectedGameContract, "Wrong game address");
+        require(callValue == 0, "Call value must be 0");
+        return ECDSA.recover(ECDSA.toEthSignedMessageHash(_userOpHash), _sessionKeySignature) == sessionKey;
+    }
 }
