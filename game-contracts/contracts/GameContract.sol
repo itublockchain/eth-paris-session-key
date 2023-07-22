@@ -16,8 +16,8 @@ contract CardGame {
         for (uint256 i = 1; i < 11; i++) {
             cards[i] = Card(
                 i,
-                (block.timestamp % 10) + 1,
-                ((block.timestamp * i) % 10) + 1,
+                (block.timestamp % 10),
+                ((block.timestamp * i) % 10),
                 true,
                 false
             );
@@ -64,8 +64,6 @@ contract CardGame {
 
     function enter(address player) public GameOver {
         require(!isGameStarted, "Game already started!");
-
-        require(msg.sender == player, "You are not the owner of this account!");
 
         if (!user1IsEntered) {
             user1Address = player;

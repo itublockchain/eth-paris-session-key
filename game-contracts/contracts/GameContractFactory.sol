@@ -7,19 +7,20 @@ contract GameFactory {
     CardGame[] public games;
 
     event GameCreated(address indexed gameAddress, uint indexed gameId);
-    
-    function createNewGame() public {
+
+    function createNewGame() public returns (address) {
         CardGame cardGame = new CardGame();
         games.push(cardGame);
 
         emit GameCreated(address(cardGame), games.length - 1);
+        return address(cardGame);
     }
 
-    function getNumberOfGames() public view returns(uint) {
+    function getNumberOfGames() public view returns (uint) {
         return games.length;
     }
 
-    function getGameAddress(uint index) public view returns(address) {
+    function getGameAddress(uint index) public view returns (address) {
         require(index < games.length, "Invalid index");
         return address(games[index]);
     }
