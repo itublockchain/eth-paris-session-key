@@ -11,22 +11,20 @@
   justify-content: center;
   transition: 0.1s linear;
 }
+
 .body {
   position: relative;
-  background: var(--global-5) !important;
-  border: 1px solid var(--global-4);
   border-radius: 12px;
   padding: 1.5rem;
   padding-top: 2.5rem;
   box-shadow: var(--shadow-1);
   animation: main 0.2s linear;
-  color: var(--global-2);
-  background-color: var(--swapbox-bg-1);
 
   // @media (max-width: 768px) {
   //   max-width: 95vw !important;
   // }
 }
+
 .close {
   position: absolute;
   top: 12px;
@@ -52,7 +50,10 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
-} ;
+}
+
+;

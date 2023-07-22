@@ -92,26 +92,6 @@ contract CardGame {
         }
     }
 
-    // function chooseCards(uint256 cardId) public gameNotInProgress GameOver {
-    //     require(!cards[cardId].isTaken, "Already Taken");
-    //     require(
-    //         msg.sender == user1Address || msg.sender == user2Address,
-    //         "You are not a player"
-    //     );
-    //     if (msg.sender == user1Address) {
-    //         require(!whoseTurn, "Not your turn");
-    //         require(user1Cards.length < 6, "You have enough cards");
-    //         user1Cards.push(cardId);
-    //     }
-    //     if (msg.sender == user2Address) {
-    //         require(whoseTurn, "Not your turn");
-    //         require(user2Cards.length < 6, "You have  enough cards");
-    //         user2Cards.push(cardId);
-    //     }
-
-    //     emit CardChosen(cardId, msg.sender);
-    // }
-
     function attack(
         uint attackerId,
         uint defenderId
@@ -145,36 +125,7 @@ contract CardGame {
         emit GameOvered(winner);
     }
 
-    function getOpponent(address player) internal view returns (address) {
-        if (player == user1Address) {
-            return user2Address;
-        } else {
-            return user1Address;
-        }
-    }
-
     function isGameOver() public view returns (bool) {
         return gameOver;
-    }
-
-    function getLiveCardsInfo(
-        bool player
-    ) public view returns (uint[5] memory) {
-        uint[5] memory liveCards;
-        if (player == true) {
-            for (uint i = 0; i < user2Cards.length; i++) {
-                if (cards[user2Cards[i]].isAlive) {
-                    liveCards[i] = user2Cards[i];
-                }
-            }
-        } else {
-            for (uint i = 0; i < user1Cards.length; i++) {
-                if (cards[user1Cards[i]].isAlive) {
-                    liveCards[i] = user1Cards[i];
-                }
-            }
-        }
-
-        return liveCards;
     }
 }

@@ -55,45 +55,73 @@ export class GameService {
         return gameStatus.toString();
     }
 
-    async getLiveCards(
-        address: string,
-        player: string,
-    ): Promise<
-        Array<{
-            id: string;
-            health: string;
-            power: string;
-            isTaken: boolean;
-            isAlive: boolean;
-        }>
+    async getLiveCards(address: string): Promise<
+        Array<
+            Array<{
+                id: string;
+                health: string;
+                power: string;
+                isTaken: boolean;
+                isAlive: boolean;
+                address?: string;
+            }>
+        >
     > {
         const gameContract = new ethers.Contract(
             address,
             ABI.cardGame,
             this.wallet,
         );
-        let cardIds: Array<number> = [];
-        let cards: Array<any> = [];
-        for (let i = 0; i < 6; i++) {
-            try {
-                const cardId =
-                    Number(player) === 1
-                        ? await gameContract.user2Cards(i)
-                        : await gameContract.user1Cards(i);
-                cardIds.push(Number(cardId.toString()));
-            } catch (e) {
-                console.log(e);
+        const cardIdsA: Array<number> = [];
+
+        const cardIdsD: Array<number> = [];
+        const cards: Array<
+            Array<{
+                id: string;
+                health: string;
+                power: string;
+                isTaken: boolean;
+                isAlive: boolean;
+                address?: string;
+            }>
+        > = [[], []];
+        for (let i = 0; i < 10; i++) {
+            if (i < 5) {
+                try {
+                    const cardId = await gameContract.user1Cards(i);
+                    cardIdsA.push(Number(cardId.toString()));
+                } catch (e) {
+                    console.log(e);
+                }
+            } else {
+                try {
+                    const cardId = await gameContract.user2Cards(i - 5);
+                    cardIdsD.push(Number(cardId.toString()));
+                } catch (e) {
+                    console.log(e);
+                }
             }
         }
-        for (let i = 0; i < cardIds.length; i++) {
+        const user1 = await gameContract.user1Address();
+        for (let i = 0; i < cardIdsA.length; i++) {
             try {
-                const card = await gameContract.cards(cardIds[i]);
-                cards.push(setCard(card));
+                const card = await gameContract.cards(cardIdsA[i]);
+                cards[0].push(setCard(card, user1));
             } catch (e) {
                 console.log(e);
             }
         }
 
+        const user2 = await gameContract.user2Address();
+        for (let i = 0; i < cardIdsD.length; i++) {
+            try {
+                const card = await gameContract.cards(cardIdsD[i]);
+                cards[1].push(setCard(card, user2));
+            } catch (e) {
+                console.log(e);
+            }
+        }
+        console.log(cardIdsD);
         return cards;
     }
 
@@ -117,6 +145,7 @@ const setCard = (
         isTaken: any;
         isAlive: any;
     }>,
+    address: string,
 ) => {
     const id = cards['id'].toString();
     const health = cards['health'].toString();
@@ -129,5 +158,6 @@ const setCard = (
         power,
         isTaken,
         isAlive,
+        address,
     };
 };

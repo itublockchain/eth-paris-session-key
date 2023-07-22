@@ -1,6 +1,6 @@
 import styles from "./Main.module.scss";
-import { Cards, Example, Navbar } from "components";
-import BACKGROUND from "assets/background.png";
+import { Cards, Navbar } from "components";
+import BACKGROUND from "assets/bg.png";
 const Main = () => {
   return (
     <div className={styles.wrapper}>

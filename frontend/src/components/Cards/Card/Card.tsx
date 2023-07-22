@@ -5,6 +5,7 @@ import { RootState } from "store";
 import { setAttackerCard, setDefenderCard } from "store/slicers/card";
 import { clsnm } from "utils/clsnm";
 import Lottie from "lottie-react";
+import { CARDIMAGES } from "constants/cards";
 import EXPLOSION from "assets/lottie/explosion.json";
 const Card = ({
   power = 9,
@@ -73,14 +74,14 @@ const Card = ({
                 defenderCard,
                 attackerCards.length,
                 defenderCards.length
-              )}px, -180%) scale(1.2)`
+              )}px, -240%) scale(1.2)`
             : who === "ME" && attackerCard === id && defenderCard === -1
             ? `scale(1.2)`
             : "",
       }}
       onClick={handleClick}
     >
-      <img src={CARD} className={styles.card} alt="card" />
+      <img src={CARDIMAGES[id]} className={styles.card} alt="card" />
       <div className={styles.power}>{power}</div>
       <div className={styles.heal}>{heal}</div>
       {attackerCard !== -1 && defenderCard === id && who === "ENEMY" && (

@@ -33,12 +33,11 @@ const CardSelection = () => {
 
       <button
         className={styles.button}
-        disabled={selectedCard === -1}
         onClick={() => {
           console.log(selectedCard);
         }}
       >
-        Select
+        Start
       </button>
     </div>
   );

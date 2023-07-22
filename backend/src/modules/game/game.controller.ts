@@ -17,8 +17,8 @@ export class GameController {
         return await this.gameService.createNewGame();
     }
 
-    @Get('getCardGame')
-    async getCardGame(@Query('address') address: string) {
+    @Get('getCardGameStatus')
+    async getCardGameStatus(@Query('address') address: string) {
         return await this.gameService.getCardGameStatus(address);
     }
 
@@ -31,10 +31,7 @@ export class GameController {
     }
 
     @Get('getLiveCards')
-    async getLiveCards(
-        @Query('address') address: string,
-        @Query('player') player: string,
-    ) {
-        return await this.gameService.getLiveCards(address, player);
+    async getLiveCards(@Query('address') address: string) {
+        return await this.gameService.getLiveCards(address);
     }
 }

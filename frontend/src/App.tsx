@@ -2,7 +2,7 @@ import { useInitialTheme } from "hooks/useInitialTheme";
 import { Main, CardSession } from "pages";
 import "@rainbow-me/rainbowkit/styles.css";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
-import { foundry, goerli, mainnet } from "wagmi/chains";
+import { foundry, goerli, arbitrumGoerli } from "wagmi/chains";
 import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
@@ -18,12 +18,9 @@ import { useState, useEffect } from "react";
 const walletConnectProjectId = "5d2bcc3aee4782901664d9069ae1f939";
 
 export const { chains, publicClient, webSocketPublicClient } = configureChains(
+  [goerli, arbitrumGoerli, foundry],
   [
-    mainnet,
-    ...(process.env.NODE_ENV === "development" ? [goerli, foundry] : []),
-  ],
-  [
-    alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY! }),
+    alchemyProvider({ apiKey: "yexj2dnIh9Y9suGg5XdHEzxwUB8uFUCg" }),
     publicProvider(),
   ]
 );
@@ -46,13 +43,16 @@ function App() {
   return (
     <div>
       <WagmiConfig config={config}>
-        <RainbowKitProvider chains={chains}>
+        <RainbowKitProvider chains={chains} coolMode={true}>
           <BrowserRouter>
             <Routes>
               <Route path={PATHS.fight} element={<Main />} />
-              <Route path={PATHS.select} element={<CardSession />} />
+              <Route path={PATHS.enter} element={<CardSession />} />
 
-              <Route path="*" element={<div>Error</div>} />
+              <Route
+                path="*"
+                element={<Navigate to={PATHS.enter}></Navigate>}
+              />
             </Routes>
             <NavigationAnimator />
           </BrowserRouter>

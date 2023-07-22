@@ -658,25 +658,6 @@ export const ABI = {
             type: 'function',
         },
         {
-            inputs: [
-                {
-                    internalType: 'bool',
-                    name: 'player',
-                    type: 'bool',
-                },
-            ],
-            name: 'getLiveCardsInfo',
-            outputs: [
-                {
-                    internalType: 'uint256[]',
-                    name: '',
-                    type: 'uint256[]',
-                },
-            ],
-            stateMutability: 'view',
-            type: 'function',
-        },
-        {
             inputs: [],
             name: 'isGameOver',
             outputs: [

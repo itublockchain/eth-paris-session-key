@@ -1,6 +1,5 @@
 import styles from "./Navbar.module.scss";
-import { useContractRead } from "wagmi";
-
+import { useContractRead, useAccount } from "wagmi";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { ABI } from "constants/abi";
 import { ADDRESS } from "constants/address";
@@ -8,6 +7,7 @@ type NavbarProps = {
   openModal?: () => void;
 };
 const Navbar = ({ openModal }: NavbarProps) => {
+  const { address } = useAccount();
   const {
     data: factoryData,
     isError,
@@ -22,8 +22,8 @@ const Navbar = ({ openModal }: NavbarProps) => {
       <div className={styles.logo}>CardSession</div>
       <div>-</div>
       <div className={styles.buttons}>
-        <button onClick={openModal}>Enter Game</button>
-        <ConnectButton />
+        {address && <button onClick={openModal}>Enter Game</button>}
+        <ConnectButton showBalance={false} chainStatus={"none"} />
       </div>
     </div>
   );
