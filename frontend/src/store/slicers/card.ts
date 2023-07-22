@@ -8,8 +8,8 @@ const cardInfo: Array<CardInfo> = [
   { id: 0, heal: 4, power: 3 },
   { id: 1, heal: 6, power: 2 },
   { id: 2, heal: 2, power: 7 },
-  { id: 3, heal: 1, power: 9 },
-  { id: 4, heal: 9, power: 1 },
+  // { id: 3, heal: 1, power: 9 },
+  // { id: 4, heal: 9, power: 1 },
 ];
 
 export interface CardState {
