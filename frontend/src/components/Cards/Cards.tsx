@@ -41,19 +41,6 @@ const Cards = ({ location }: { location: "TOP" | "BOTTOM" }) => {
       }
     >
       {location === "TOP" &&
-        attackerCards.map((card: CardInfo, i: number) => {
-          return (
-            <Card
-              id={card.id}
-              key={card.id}
-              heal={card.heal}
-              power={card.power}
-              location={setLocation(attackerCards.length, i, location)}
-              who={"ENEMY"}
-            />
-          );
-        })}
-      {location === "BOTTOM" &&
         defenderCards.map((card: CardInfo, i: number) => {
           return (
             <Card
@@ -62,6 +49,19 @@ const Cards = ({ location }: { location: "TOP" | "BOTTOM" }) => {
               heal={card.heal}
               power={card.power}
               location={setLocation(defenderCards.length, i, location)}
+              who={"ENEMY"}
+            />
+          );
+        })}
+      {location === "BOTTOM" &&
+        attackerCards.map((card: CardInfo, i: number) => {
+          return (
+            <Card
+              id={card.id}
+              key={card.id}
+              heal={card.heal}
+              power={card.power}
+              location={setLocation(attackerCards.length, i, location)}
               who={"ME"}
             />
           );

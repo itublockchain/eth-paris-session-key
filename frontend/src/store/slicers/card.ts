@@ -8,8 +8,16 @@ const cardInfo: Array<CardInfo> = [
   { id: 0, heal: 4, power: 3 },
   { id: 1, heal: 6, power: 2 },
   { id: 2, heal: 2, power: 7 },
-  // { id: 3, heal: 1, power: 9 },
-  // { id: 4, heal: 9, power: 1 },
+  { id: 3, heal: 1, power: 9 },
+  { id: 4, heal: 9, power: 1 },
+];
+
+const cardInfo2: Array<CardInfo> = [
+  { id: 0, heal: 4, power: 3 },
+  { id: 1, heal: 6, power: 2 },
+  { id: 2, heal: 2, power: 7 },
+  { id: 3, heal: 1, power: 9 },
+  { id: 4, heal: 9, power: 1 },
 ];
 
 export interface CardState {
@@ -23,7 +31,7 @@ const initialState: CardState = {
   attackerCard: -1,
   defenderCard: -1,
   attackerCards: cardInfo,
-  defenderCards: cardInfo,
+  defenderCards: cardInfo2,
 };
 
 export const cardSlice = createSlice({

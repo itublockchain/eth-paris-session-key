@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "store";
 import { setAttackerCard, setDefenderCard } from "store/slicers/card";
 import { clsnm } from "utils/clsnm";
-
+import Lottie from "lottie-react";
+import EXPLOSION from "assets/lottie/explosion.json";
 const Card = ({
   power = 9,
   heal = 9,
@@ -82,6 +83,17 @@ const Card = ({
       <img src={CARD} className={styles.card} alt="card" />
       <div className={styles.power}>{power}</div>
       <div className={styles.heal}>{heal}</div>
+      {attackerCard !== -1 && defenderCard === id && who === "ENEMY" && (
+        <div className={styles.explosion}>
+          <Lottie
+            animationData={EXPLOSION}
+            loop={true}
+            style={{
+              width: "170px",
+            }}
+          />
+        </div>
+      )}
     </div>
   );
 };
