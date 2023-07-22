@@ -621,19 +621,6 @@ export const ABI = {
         {
             inputs: [
                 {
-                    internalType: 'uint256',
-                    name: 'cardId',
-                    type: 'uint256',
-                },
-            ],
-            name: 'chooseCards',
-            outputs: [],
-            stateMutability: 'nonpayable',
-            type: 'function',
-        },
-        {
-            inputs: [
-                {
                     internalType: 'address',
                     name: 'player',
                     type: 'address',
@@ -659,12 +646,31 @@ export const ABI = {
         },
         {
             inputs: [],
-            name: 'isGameOver',
+            name: 'gameStatus',
             outputs: [
                 {
-                    internalType: 'bool',
+                    internalType: 'enum CardGame.GameStatus',
                     name: '',
+                    type: 'uint8',
+                },
+            ],
+            stateMutability: 'view',
+            type: 'function',
+        },
+        {
+            inputs: [
+                {
+                    internalType: 'bool',
+                    name: 'player',
                     type: 'bool',
+                },
+            ],
+            name: 'getLiveCardsInfo',
+            outputs: [
+                {
+                    internalType: 'uint256[]',
+                    name: '',
+                    type: 'uint256[]',
                 },
             ],
             stateMutability: 'view',
@@ -672,7 +678,7 @@ export const ABI = {
         },
         {
             inputs: [],
-            name: 'isGameStarted',
+            name: 'isGameOver',
             outputs: [
                 {
                     internalType: 'bool',
@@ -730,19 +736,6 @@ export const ABI = {
         },
         {
             inputs: [],
-            name: 'user1IsTurn',
-            outputs: [
-                {
-                    internalType: 'bool',
-                    name: '',
-                    type: 'bool',
-                },
-            ],
-            stateMutability: 'view',
-            type: 'function',
-        },
-        {
-            inputs: [],
             name: 'user2Address',
             outputs: [
                 {
@@ -788,7 +781,7 @@ export const ABI = {
         },
         {
             inputs: [],
-            name: 'user2IsTurn',
+            name: 'whoseTurn',
             outputs: [
                 {
                     internalType: 'bool',

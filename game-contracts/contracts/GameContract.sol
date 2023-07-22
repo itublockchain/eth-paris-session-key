@@ -10,17 +10,28 @@ contract CardGame {
         bool isTaken;
     }
 
+    enum GameStatus {
+        NOTSTARTED,
+        STARTED,
+        FINISHED
+    }
+
     mapping(uint256 => Card) public cards;
 
     constructor() {
-        for (uint256 i = 1; i < 11; i++) {
+        for (uint256 i = 0; i < 10; i++) {
             cards[i] = Card(
                 i,
                 (block.timestamp % 10),
                 ((block.timestamp * i) % 10),
                 true,
-                false
+                true
             );
+            if (i < 5) {
+                user1Cards.push(i);
+            } else {
+                user2Cards.push(i);
+            }
         }
     }
 
@@ -29,10 +40,11 @@ contract CardGame {
 
     bool public user1IsEntered;
     bool public user2IsEntered;
-    bool public user1IsTurn;
-    bool public user2IsTurn;
-    bool public isGameStarted;
+
+    // false => player1, true => player2
+    bool public whoseTurn;
     bool public gameOver;
+    GameStatus public gameStatus = GameStatus.NOTSTARTED;
 
     uint[] public user1Cards;
     uint[] public user2Cards;
@@ -53,7 +65,10 @@ contract CardGame {
     event GameOvered(address indexed winner);
 
     modifier gameNotInProgress() {
-        require(isGameStarted, "Game has not started yet!");
+        require(
+            gameStatus != GameStatus.NOTSTARTED,
+            "Game has not started yet!"
+        );
         _;
     }
 
@@ -63,47 +78,49 @@ contract CardGame {
     }
 
     function enter(address player) public GameOver {
-        require(!isGameStarted, "Game already started!");
+        require(gameStatus == GameStatus.NOTSTARTED, "Game already started!");
 
         if (!user1IsEntered) {
             user1Address = player;
             user1IsEntered = true;
-            user1IsTurn = true;
-        }
-        if (!user2IsEntered) {
+        } else if (!user2IsEntered) {
             user2Address = player;
             user2IsEntered = true;
-        }
-        if (user1IsEntered && user2IsEntered) {
-            isGameStarted = true;
+        } else {
+            gameStatus = GameStatus.STARTED;
             emit GameStarted();
         }
     }
 
-    function chooseCards(uint256 cardId) public gameNotInProgress GameOver {
-        require(!cards[cardId].isTaken, "Already Taken");
-        require(
-            msg.sender == user1Address || msg.sender == user2Address,
-            "You are not a player"
-        );
-        if (msg.sender == user1Address) {
-            require(user1IsTurn, "Not your turn");
-            require(user1Cards.length < 6, "You have enough cards");
-            user1Cards.push(cardId);
-        }
-        if (msg.sender == user2Address) {
-            require(user2IsTurn, "Not your turn");
-            require(user2Cards.length < 6, "You have  enough cards");
-            user2Cards.push(cardId);
-        }
+    // function chooseCards(uint256 cardId) public gameNotInProgress GameOver {
+    //     require(!cards[cardId].isTaken, "Already Taken");
+    //     require(
+    //         msg.sender == user1Address || msg.sender == user2Address,
+    //         "You are not a player"
+    //     );
+    //     if (msg.sender == user1Address) {
+    //         require(!whoseTurn, "Not your turn");
+    //         require(user1Cards.length < 6, "You have enough cards");
+    //         user1Cards.push(cardId);
+    //     }
+    //     if (msg.sender == user2Address) {
+    //         require(whoseTurn, "Not your turn");
+    //         require(user2Cards.length < 6, "You have  enough cards");
+    //         user2Cards.push(cardId);
+    //     }
 
-        emit CardChosen(cardId, msg.sender);
-    }
+    //     emit CardChosen(cardId, msg.sender);
+    // }
 
     function attack(
         uint attackerId,
         uint defenderId
     ) public gameNotInProgress GameOver {
+        require(
+            (msg.sender == user1Address && !whoseTurn) ||
+                (msg.sender == user2Address && whoseTurn),
+            "Not your turn"
+        );
         require(cards[defenderId].isAlive, "This card is not alive");
         require(cards[attackerId].isAlive, "This card is not alive");
 
@@ -138,5 +155,26 @@ contract CardGame {
 
     function isGameOver() public view returns (bool) {
         return gameOver;
+    }
+
+    function getLiveCardsInfo(
+        bool player
+    ) public view returns (uint[5] memory) {
+        uint[5] memory liveCards;
+        if (player == true) {
+            for (uint i = 0; i < user2Cards.length; i++) {
+                if (cards[user2Cards[i]].isAlive) {
+                    liveCards[i] = user2Cards[i];
+                }
+            }
+        } else {
+            for (uint i = 0; i < user1Cards.length; i++) {
+                if (cards[user1Cards[i]].isAlive) {
+                    liveCards[i] = user1Cards[i];
+                }
+            }
+        }
+
+        return liveCards;
     }
 }

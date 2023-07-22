@@ -6,6 +6,9 @@ async function main() {
 
   await Factory.deployed();
 
+  const newGame = await Factory.createNewGame();
+  newGame.wait();
+
   console.log("Factory Contract deployed to:", Factory.address);
 }
 
