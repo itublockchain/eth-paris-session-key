@@ -3,3 +3,4 @@ export { Navbar } from "./Navbar/Navbar";
 export { Card } from "./Cards/Card/Card";
 export { Cards } from "./Cards/Cards";
 export { CardSelection } from "./CardSelection/CardSelection";
+export { EnterGameModal } from "./EnterGameModal/EnterGameModal";

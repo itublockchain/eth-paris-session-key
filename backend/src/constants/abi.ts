@@ -381,3 +381,23 @@ export const SealAbi = {
         },
     ],
 };
+export const ABI = {
+    factory: [
+        {
+            inputs: [
+                {
+                    internalType: 'address',
+                    name: '_entryPointAddress',
+                    type: 'address',
+                },
+                {
+                    internalType: 'bytes',
+                    name: 'initialValidQ',
+                    type: 'bytes',
+                },
+            ],
+            stateMutability: 'nonpayable',
+            type: 'constructor',
+        },
+    ],
+};
