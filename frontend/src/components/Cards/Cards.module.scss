@@ -1,4 +1,19 @@
 .wrapper {
     display: flex;
     align-items: center;
+    width: 675px;
+    justify-content: center;
+    gap: 10px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+    &.bottom {
+        bottom: 0px;
+    }
+
+    &.top {
+        top: 0px;
+    }
+
 }

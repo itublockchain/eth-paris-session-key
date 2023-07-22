@@ -1,10 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
 import themeSlice from "./slicers/theme";
-
+import cardSlice from "./slicers/card";
 export const store = configureStore({
   reducer: {
     theme: themeSlice,
+    card: cardSlice,
   },
   middleware: (getDefaultMiddleware) => {
     const customizedMiddleware = getDefaultMiddleware({
