@@ -22,8 +22,8 @@ contract CardGame {
         for (uint256 i = 0; i < 10; i++) {
             cards[i] = Card(
                 i,
-                (block.timestamp % 10),
-                ((block.timestamp * i) % 10),
+                (((block.timestamp * (i + 7)) % 9) + 1),
+                (((block.timestamp * (i + 4)) % 9) + 1),
                 true,
                 true
             );
@@ -86,7 +86,6 @@ contract CardGame {
         } else if (!user2IsEntered) {
             user2Address = player;
             user2IsEntered = true;
-        } else {
             gameStatus = GameStatus.STARTED;
             emit GameStarted();
         }
@@ -121,7 +120,7 @@ contract CardGame {
         } else {
             cards[defenderId].health -= cards[attackerId].power;
         }
-
+        whoseTurn = !whoseTurn;
         emit GameOvered(winner);
     }
 
