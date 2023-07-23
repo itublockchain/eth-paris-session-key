@@ -27,7 +27,9 @@ Users must submit a transaction for each operation. You want to spend your USDC 
 
 **NFT Based Game:**
 Assume you're playing an NFT-based card game, and each move you make requires you to sign a message from your wallet. You wish to fight with your second card? Okay, sign this message!... We require a transaction for each move, as well as the native token to pay the costs. This is one of the biggest barriers for web3 games. (We are also working on this!)
-![lasödşlaösdşlsa](https://github.com/itublockchain/eth-paris-session-key/assets/71966179/dbb8eda3-d677-4df0-8345-3b50d6a38cea)
+
+![lasödşlaösdşlsa](https://github.com/itublockchain/eth-paris-session-key/assets/71966179/57c58651-5dde-4c11-8baf-51cc6bf244b3)
+
 
 Assume you've registered a Twitter account using your email address, and each of your postings requires a signature from your email. Twitter's UX would be terrible if the architecture was developed in this manner. While using the software, your identity (email) is invisible. Crypto wallets should also be invisible. To make crypto wallets invisible, we need a way to make wallets smart: Account Abstraction.
 
@@ -45,7 +47,11 @@ In normal Ethereum Transactions you can’t initiate it if you don't ensure you 
 In the web2 world, session keys are like temporary passwords used during a conversation between two devices (like your computer and a server). They're created at the start of the conversation, used to keep the information shared secure, and then thrown away after the conversation ends. So, even if a hacker somehow finds out this password, they can't use it to listen in on future conversations because a new, different password (or session key) is created each time.
 
 As in the web2 world, we define session keys as a framework that has the potential to change how users engage with dApps. The goal of session keys is to allow users to set pre-approvals for a specific time in a variety of scenarios.
-![jhgjgjhgjghj](https://github.com/itublockchain/eth-paris-session-key/assets/71966179/e95d5122-e9f4-43f4-b922-0453b5c4848d)
+
+![jhgjgjhgjghj](https://github.com/itublockchain/eth-paris-session-key/assets/71966179/37be882c-180e-462a-ae95-e81e1eb61905)
+
+
+
 [Our Contracts](./account-contracts/contracts/Safe4337SessionKeyModule.sol)
 
 [Our Contract](./account-contracts//contracts/GameSessionValidationModule.sol)
@@ -61,7 +67,10 @@ We have three parts for our project: A smart account contract powered by Biconom
 
 **Smart Account Contract and its components:**
 
-![Dogansakdasldmalskdm](https://github.com/itublockchain/eth-paris-session-key/assets/71966179/54e9e892-5490-4bd4-b909-0886630f56e8)
+![Dogansakdasldmalskdm](https://github.com/itublockchain/eth-paris-session-key/assets/71966179/d3c19573-7388-4847-abe7-b66261bd61b0)
+
+
+
 [Our Contract](./account-contracts//contracts/Safe4337SessionKeyModule.sol)
 
 Our main Smart Account contract is Safe’s base contract. We have implemented a plugin to make it 4337 compatible which allows us to initiate the transaction in a decentralized way instead of having centralized relayers. This plugin also contains Biconomy’s Session Key module for enabling the Session Key feature.
