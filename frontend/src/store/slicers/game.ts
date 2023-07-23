@@ -5,12 +5,14 @@ export interface GameState {
   address: string | null;
   allCards: Array<Array<Cards>>;
   user: 0 | 1;
+  end: boolean;
 }
 
 const initialState: GameState = {
   address: null,
   allCards: [],
   user: 0,
+  end: false,
 };
 
 export const gameSlice = createSlice({
@@ -26,8 +28,12 @@ export const gameSlice = createSlice({
     setUserNumber: (state, action: PayloadAction<0 | 1>) => {
       state.user = action.payload;
     },
+    setGameEnd: (state, action: PayloadAction<boolean>) => {
+      state.end = action.payload;
+    },
   },
 });
 
-export const { setGameAddress, setAllCards, setUserNumber } = gameSlice.actions;
+export const { setGameAddress, setAllCards, setUserNumber, setGameEnd } =
+  gameSlice.actions;
 export default gameSlice.reducer;

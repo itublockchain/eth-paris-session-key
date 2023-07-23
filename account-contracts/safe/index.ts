@@ -1,21 +1,25 @@
 import { ethers } from "ethers";
-import { EthersAdapter, SafeFactory, SafeAccountConfig } from "@safe-global/protocol-kit";
-
+import {
+  EthersAdapter,
+  SafeFactory,
+  SafeAccountConfig,
+} from "@safe-global/protocol-kit";
+// https://polygon-mumbai.g.alchemy.com/v2/xeIKGtGI15H5QNl_-BjR1cYuDcEXzfay
 const RPC_URL = "https://eth-goerli.public.blastapi.io";
 const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
 
 const owner = new ethers.Wallet(process.env.PRIVATE_KEY!, provider);
 
 const ethAdapterOwner = new EthersAdapter({
-    ethers,
-    signerOrProvider: owner,
+  ethers,
+  signerOrProvider: owner,
 });
 
 const safeFactory = await SafeFactory.create({ ethAdapter: ethAdapterOwner });
 
 const safeAccountConfig: SafeAccountConfig = {
-    owners: [await owner.getAddress()],
-    threshold: 1,
+  owners: [await owner.getAddress()],
+  threshold: 1,
 };
 
 const safe = await safeFactory.deploySafe({ safeAccountConfig });

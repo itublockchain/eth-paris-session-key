@@ -4,7 +4,6 @@ import { CONFIG } from "config/config";
 import { ethers } from "ethers";
 import { API } from "restapi/api";
 import type { Cards } from "restapi/types";
-
 const baseURL = "http://localhost:8000";
 
 export const provider: ethers.providers.JsonRpcProvider =

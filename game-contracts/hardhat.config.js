@@ -23,5 +23,9 @@ module.exports = {
       url: GOERLI_URL,
       accounts: [PRIVATE_KEY],
     },
+    mumbai: {
+      url: "https://polygon-mumbai.g.alchemy.com/v2/xeIKGtGI15H5QNl_-BjR1cYuDcEXzfay",
+      accounts: [PRIVATE_KEY],
+    },
   },
 };

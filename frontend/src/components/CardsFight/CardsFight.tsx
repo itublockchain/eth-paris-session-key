@@ -45,30 +45,22 @@ const CardsFight = ({ location }: { location: "TOP" | "BOTTOM" }) => {
   const initTx = async () => {
     if (!gameAddress) return;
     console.log("game add", gameAddress);
+    // const nonce = await provider.getTransactionCount(address as `0x${string}`);
     if (userType === 1) {
-      const nonce = await provider.getTransactionCount(
-        address as `0x${string}`
-      );
-
       const contract = new Contract(gameAddress, ABI.cardGame, signWallet2);
       try {
         await contract.attack(attackerCard, defenderCard, address, {
           gasLimit: 1000000,
-          nonce: nonce,
         });
       } catch (e) {
         console.log(e);
       }
     } else {
-      const nonce = await provider.getTransactionCount(
-        address as `0x${string}`
-      );
-      console.log("mynonce: ", nonce);
+      console.log("else ofc");
       const contract = new Contract(gameAddress, ABI.cardGame, signWallet1);
       try {
         await contract.attack(attackerCard, defenderCard, address, {
           gasLimit: 1000000,
-          nonce: nonce,
         });
       } catch (e) {
         console.log(e);

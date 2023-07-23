@@ -13,6 +13,13 @@
         width: 100%;
     }
 
+    .win {
+        z-index: 2234234;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        left: 50%;
+    }
 
     .background {
         width: 100%;

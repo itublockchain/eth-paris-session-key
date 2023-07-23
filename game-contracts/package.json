@@ -9,6 +9,7 @@
   },
   "scripts": {
     "deploy": "npx hardhat run deploy/deploy-factory.js --network arbitrumGoerli",
+    "deploy2": "npx hardhat run deploy/deploy-factory.js --network mumbai",
     "compile": "npx hardhat compile"
   },
   "dependencies": {
