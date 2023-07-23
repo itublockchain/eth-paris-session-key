@@ -15,7 +15,7 @@ interface ISafe {
         returns (bool success);
 }
 
-contract Safe4337SessionKeyModule {
+contract Safe4337SessionKeyPlugin {
     address public immutable entryPoint;
     SessionKeyManager public immutable sessionKeyManager;
 
