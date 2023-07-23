@@ -3,6 +3,7 @@ pragma solidity ^0.8.17;
 
 import "./UserOperation.sol";
 import "./SessionKeyManager.sol";
+import {BasePluginWithEventMetadata, PluginMetadata} from "./Base.sol";
 
 interface ISafe {
     /// @dev Allows a Module to execute a Safe transaction without any further confirmations.
@@ -15,11 +16,21 @@ interface ISafe {
         returns (bool success);
 }
 
-contract Safe4337SessionKeyPlugin {
+contract Safe4337SessionKeyPlugin is BasePluginWithEventMetadata {
     address public immutable entryPoint;
     SessionKeyManager public immutable sessionKeyManager;
 
-    constructor(address _entryPoint) {
+    constructor(address _entryPoint)
+        BasePluginWithEventMetadata(
+            PluginMetadata({
+                name: "Safe4337SessionKeyPlugin",
+                version: "0.0.1",
+                requiresRootAccess: false,
+                iconUrl: "",
+                appUrl: ""
+            })
+        )
+    {
         entryPoint = _entryPoint;
         sessionKeyManager = new SessionKeyManager(address(this));
     }
