@@ -50,7 +50,7 @@ const EnterGameModal = ({ modal }: { modal: ModalController }) => {
 
   return (
     <Modal isOpen={modal.isOpen} close={modal.close} className={styles.wrapper}>
-      <div>Welcome to SessionCard</div>
+      <div>Welcome to Session Cards</div>
       <div className={styles.a}>
         {!gameAddress ? (
           <button onClick={handleSearchClick} className={styles.button1}>

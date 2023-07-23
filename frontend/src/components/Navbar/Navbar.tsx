@@ -11,7 +11,7 @@ const Navbar = ({ openModal }: NavbarProps) => {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.logo}>CardSession</div>
+      <div className={styles.logo}>Session Cards</div>
       <div>-</div>
       <div className={styles.buttons}>
         {address && (
