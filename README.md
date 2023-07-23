@@ -26,9 +26,8 @@ And this is why crypto UX is still a pain and wallets are still visible. Let’s
 Users must submit a transaction for each operation. You want to spend your USDC on Ether? Okay, sign this message! Have you reconsidered?  Than, sign this message! You'd like to sell your Ether. Here, sign this message!.. Each time you express your operation, you have to use your wallet, and yes, the wallet is visible and you are aware that you are doing so! (We're working on this to solve it!)
 
 **NFT Based Game:**
-![lasödşlaösdşlsa](https://github.com/itublockchain/eth-paris-session-key/assets/71966179/dbb8eda3-d677-4df0-8345-3b50d6a38cea)
-
 Assume you're playing an NFT-based card game, and each move you make requires you to sign a message from your wallet. You wish to fight with your second card? Okay, sign this message!... We require a transaction for each move, as well as the native token to pay the costs. This is one of the biggest barriers for web3 games. (We are also working on this!)
+![lasödşlaösdşlsa](https://github.com/itublockchain/eth-paris-session-key/assets/71966179/dbb8eda3-d677-4df0-8345-3b50d6a38cea)
 
 Assume you've registered a Twitter account using your email address, and each of your postings requires a signature from your email. Twitter's UX would be terrible if the architecture was developed in this manner. While using the software, your identity (email) is invisible. Crypto wallets should also be invisible. To make crypto wallets invisible, we need a way to make wallets smart: Account Abstraction.
 
