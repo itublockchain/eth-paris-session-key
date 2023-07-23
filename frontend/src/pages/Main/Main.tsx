@@ -6,7 +6,7 @@ import { setDefenderCards, setAttackerCards } from "store/slicers/card";
 import { useEffect } from "react";
 import { apiGetLastGameAddress, apiGetLiveCards } from "restapi";
 import { useAccount } from "wagmi";
-import { setGameAddress } from "store/slicers/game";
+import { setGameAddress, setUserNumber } from "store/slicers/game";
 
 const Main = () => {
   const { address } = useAccount();
@@ -20,9 +20,11 @@ const Main = () => {
       if (cards) {
         console.log(cards.data[0][0].address, address);
         if (cards.data[0][0].address === address) {
+          dispatch(setUserNumber(0));
           dispatch(setAttackerCards(cards.data[0]));
           dispatch(setDefenderCards(cards.data[1]));
         } else {
+          dispatch(setUserNumber(1));
           dispatch(setAttackerCards(cards.data[1]));
           dispatch(setDefenderCards(cards.data[0]));
         }

@@ -11,7 +11,6 @@
         box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.5);
     }
 
-
     .card {
         width: 125px;
         border-radius: 12px;
@@ -19,7 +18,7 @@
 
     .power {
         position: absolute;
-        bottom: 19px;
+        bottom: 16px;
         left: 11px;
         z-index: 10;
         font-size: 20px;
@@ -28,7 +27,7 @@
 
     .heal {
         position: absolute;
-        bottom: 19px;
+        bottom: 16px;
         right: 10px;
         z-index: 10;
         font-size: 20px;

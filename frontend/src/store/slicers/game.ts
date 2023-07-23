@@ -4,11 +4,13 @@ import { Cards } from "restapi/types";
 export interface GameState {
   address: string | null;
   allCards: Array<Array<Cards>>;
+  user: 0 | 1;
 }
 
 const initialState: GameState = {
   address: null,
   allCards: [],
+  user: 0,
 };
 
 export const gameSlice = createSlice({
@@ -21,8 +23,11 @@ export const gameSlice = createSlice({
     setAllCards: (state, action: PayloadAction<Array<Array<Cards>>>) => {
       state.allCards = action.payload;
     },
+    setUserNumber: (state, action: PayloadAction<0 | 1>) => {
+      state.user = action.payload;
+    },
   },
 });
 
-export const { setGameAddress, setAllCards } = gameSlice.actions;
+export const { setGameAddress, setAllCards, setUserNumber } = gameSlice.actions;
 export default gameSlice.reducer;

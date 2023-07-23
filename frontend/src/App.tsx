@@ -2,7 +2,7 @@ import { useInitialTheme } from "hooks/useInitialTheme";
 import { Main, CardSession } from "pages";
 import "@rainbow-me/rainbowkit/styles.css";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
-import { foundry, goerli, arbitrumGoerli } from "wagmi/chains";
+import { foundry, goerli, arbitrumGoerli, gnosisChiado } from "wagmi/chains";
 import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
@@ -18,7 +18,7 @@ import { useState, useEffect } from "react";
 const walletConnectProjectId = "5d2bcc3aee4782901664d9069ae1f939";
 
 export const { chains, publicClient, webSocketPublicClient } = configureChains(
-  [goerli, arbitrumGoerli, foundry],
+  [goerli, arbitrumGoerli, foundry, gnosisChiado],
   [
     alchemyProvider({ apiKey: "yexj2dnIh9Y9suGg5XdHEzxwUB8uFUCg" }),
     publicProvider(),

@@ -75,7 +75,6 @@ const Card = ({
             ? `translate(${setAttackLocation(
                 keyId,
                 getId(defenderCards, defenderCard),
-                // defenderCard,
                 attackerCards.length,
                 defenderCards.length
               )}px, -240%) scale(1.2)`

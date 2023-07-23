@@ -7,9 +7,11 @@ import { RootState } from "store";
 import { useEffect } from "react";
 import { setDefenderCard } from "store/slicers/card";
 import { Cards } from "restapi/types";
-import { useAccount } from "wagmi";
-import { useContractWrite } from "wagmi";
+import { useAccount, useContractWrite } from "wagmi";
+import { pk1, pk2 } from "restapi";
 import { ABI } from "constants/abi";
+import { useGetWallet } from "hooks/useGetWallet";
+import { Contract } from "ethers";
 const CardsFight = ({ location }: { location: "TOP" | "BOTTOM" }) => {
   const { address } = useAccount();
   const dispatch = useDispatch();
@@ -17,6 +19,8 @@ const CardsFight = ({ location }: { location: "TOP" | "BOTTOM" }) => {
     (state: RootState) => state.card.attackerCard
   );
   const gameAddress = useSelector((state: RootState) => state.game.address);
+
+  const userType = useSelector((state: RootState) => state.game.user);
   const defenderCard = useSelector(
     (state: RootState) => state.card.defenderCard
   );
@@ -34,18 +38,41 @@ const CardsFight = ({ location }: { location: "TOP" | "BOTTOM" }) => {
     abi: ABI.cardGame,
     functionName: "attack",
   });
+
+  const signWallet1 = useGetWallet().getWallet(pk1);
+  const signWallet2 = useGetWallet().getWallet(pk2);
+  const initTx = async () => {
+    if (!gameAddress) return;
+    if (userType === 1) {
+      const contract = new Contract(gameAddress, ABI.cardGame, signWallet2);
+      try {
+        await contract.attack(attackerCard, defenderCard, address, {
+          gasLimit: 1000000,
+        });
+      } catch (e) {
+        console.log(e);
+      }
+    } else {
+      const contract = new Contract(gameAddress, ABI.cardGame, signWallet1);
+      try {
+        await contract.attack(attackerCard, defenderCard, address, {
+          gasLimit: 1000000,
+        });
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  };
   useEffect(() => {
     if (attackerCard === -1) {
       dispatch(setDefenderCard(-1));
     }
     if (defenderCard !== -1 && attackerCard !== -1 && address) {
-      write({
-        args: [attackerCard, defenderCard, address],
-      });
+      initTx();
       setTimeout(() => {
         dispatch(setDefenderCard(-1));
         dispatch(setAttackerCard(-1));
-      }, 700);
+      }, 2500);
     }
   }, [attackerCard, defenderCard]);
   return (

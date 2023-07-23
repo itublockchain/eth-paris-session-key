@@ -1,5 +1,5 @@
 import styles from "./Card.module.scss";
-import CARD from "assets/card.png";
+import CARD from "assets/cards/bgOfCard.png";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "store";
 
@@ -41,8 +41,6 @@ const Card = ({
       onClick={handleClick}
     >
       <img src={CARD} className={styles.card} alt="card" />
-      <div className={styles.power}>{power}</div>
-      <div className={styles.heal}>{heal}</div>
     </div>
   );
 };
