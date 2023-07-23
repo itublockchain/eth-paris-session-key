@@ -9,7 +9,7 @@ Outline:
 5. How it’s made
 6. Future Work
 
-***Why is Crypto UX Still a Pain?***
+**_Why is Crypto UX Still a Pain?_**
 
 Email, iCloud, Twitter, and many more... The Internet is only about identities, but in the web2 world, the identities are provided by trusted centralized providers.  We need to make crypto trustless and user-owned, which is one of the reasons why we have hard-coded validity rules on blockchains.
 
@@ -37,7 +37,7 @@ In normal Ethereum Transactions you can’t initiate it if you don't ensure you 
 
 - **Using different algorithms to prove the identity:** This allows wallet builders to use different curves as a signing method and can improve the onboarding process
 - **Paying gas fees with different tokens**: Paymaster technology allows developers to build Smart Wallets that users don't need to keep native tokens to access the blockchain.
-- **Batch Transaction:** You can make two transactions together (such as transferfrom and approve) since you can call arbitrary calldata with “*executeuserop”.*
+- **Batch Transaction:** You can make two transactions together (such as transferfrom and approve) since you can call arbitrary calldata with “_executeuserop”._
 - **Session Keys: A way to change how users engage with dapps.**
 
 **Session Keys**
@@ -46,6 +46,9 @@ In the web2 world, session keys are like temporary passwords used during a conve
 
 As in the web2 world, we define session keys as a framework that has the potential to change how users engage with dApps. The goal of session keys is to allow users to set pre-approvals for a specific time in a variety of scenarios.
 ![jhgjgjhgjghj](https://github.com/itublockchain/eth-paris-session-key/assets/71966179/e95d5122-e9f4-43f4-b922-0453b5c4848d)
+[Our Contracts](./account-contracts/contracts/Safe4337SessionKeyModule.sol)
+
+[Our Contract](./account-contracts//contracts/GameSessionValidationModule.sol)
 
 When we use session keys:
 
@@ -59,7 +62,7 @@ We have three parts for our project: A smart account contract powered by Biconom
 **Smart Account Contract and its components:**
 
 ![Dogansakdasldmalskdm](https://github.com/itublockchain/eth-paris-session-key/assets/71966179/54e9e892-5490-4bd4-b909-0886630f56e8)
-
+[Our Contract](./account-contracts//contracts/Safe4337SessionKeyModule.sol)
 
 Our main Smart Account contract is Safe’s base contract. We have implemented a plugin to make it 4337 compatible which allows us to initiate the transaction in a decentralized way instead of having centralized relayers. This plugin also contains Biconomy’s Session Key module for enabling the Session Key feature.
 
