@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/Users/alimsahin/Desktop/alim2.0/ethparis/eth-paris-session-key/game-contracts/contracts/GameContract.sol": {
-      "lastModificationDate": 1690069598431,
-      "contentHash": "adeca62ce2ee37788af5dfda25fbed1c",
+      "lastModificationDate": 1690073864257,
+      "contentHash": "aee34d9fe72a3a0983a006f3b211f52d",
       "sourceName": "contracts/GameContract.sol",
       "solcConfig": {
         "version": "0.8.18",
@@ -44,7 +44,7 @@
       ]
     },
     "/Users/alimsahin/Desktop/alim2.0/ethparis/eth-paris-session-key/game-contracts/contracts/GameContractFactory.sol": {
-      "lastModificationDate": 1690036193148,
+      "lastModificationDate": 1690069727580,
       "contentHash": "eae1be1b1d82a69afb162594e1076b10",
       "sourceName": "contracts/GameContractFactory.sol",
       "solcConfig": {

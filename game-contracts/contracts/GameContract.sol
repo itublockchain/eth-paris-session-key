@@ -23,7 +23,7 @@ contract CardGame {
             cards[i] = Card(
                 i,
                 (((block.timestamp * (i + 7)) % 9) + 1),
-                (((block.timestamp * (i + 4)) % 9) + 1),
+                (((block.prevrandao * (i + 4)) % 8) + 2),
                 true,
                 true
             );
@@ -93,11 +93,12 @@ contract CardGame {
 
     function attack(
         uint attackerId,
-        uint defenderId
+        uint defenderId,
+        address attacker
     ) public gameNotInProgress GameOver {
         require(
-            (msg.sender == user1Address && !whoseTurn) ||
-                (msg.sender == user2Address && whoseTurn),
+            (attacker == user1Address && !whoseTurn) ||
+                (attacker == user2Address && whoseTurn),
             "Not your turn"
         );
         require(cards[defenderId].isAlive, "This card is not alive");
@@ -105,23 +106,23 @@ contract CardGame {
 
         if (cards[defenderId].health <= cards[attackerId].power) {
             cards[defenderId].isAlive = false;
-            if (user1Address == msg.sender) {
+            if (user1Address == attacker) {
                 user1DeadCardCount++;
             }
-            if (user2Address == msg.sender) {
+            if (user2Address == attacker) {
                 user2DeadCardCount++;
             }
             if (user1DeadCardCount == 5) {
                 winner = user2Address;
-            }
-            if (user2DeadCardCount == 5) {
+                emit GameOvered(winner);
+            } else if (user2DeadCardCount == 5) {
                 winner = user1Address;
+                emit GameOvered(winner);
             }
         } else {
             cards[defenderId].health -= cards[attackerId].power;
         }
         whoseTurn = !whoseTurn;
-        emit GameOvered(winner);
     }
 
     function isGameOver() public view returns (bool) {
