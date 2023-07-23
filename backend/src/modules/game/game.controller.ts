@@ -34,4 +34,9 @@ export class GameController {
     async getLiveCards(@Query('address') address: string) {
         return await this.gameService.getLiveCards(address);
     }
+
+    @Get('getAllCardList')
+    async getAllCardList(@Query('address') address: string) {
+        return await this.gameService.getAllCardList(address);
+    }
 }

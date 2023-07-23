@@ -4,7 +4,7 @@ import type { AxiosError, AxiosResponse } from "axios";
 
 import { QUERIES } from "constants/queries";
 import { useEffect } from "react";
-import { apiGetLiveCards } from "restapi";
+import { apiGetLiveCards, apiGetAllCardList } from "restapi";
 import { Cards } from "restapi/types";
 export function useGetLiveCards(
   address: string
@@ -13,7 +13,7 @@ export function useGetLiveCards(
     useQuery(
       QUERIES.liveCards,
       async (): Promise<AxiosResponse<Array<Cards>>> => {
-        const a = await apiGetLiveCards(address)
+        const a = await apiGetAllCardList(address)
           .then((res) => {
             return res.data;
           })

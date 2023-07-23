@@ -40,3 +40,9 @@ export const apiGetLiveCards = async (
 ): Promise<AxiosResponse<Array<Array<Cards>>>> => {
   return await axios.get(API.getLiveCards(address));
 };
+
+export const apiGetAllCardList = async (
+  address: string
+): Promise<AxiosResponse<Array<Array<Cards>>>> => {
+  return await axios.get(API.getAllCardList(address));
+};

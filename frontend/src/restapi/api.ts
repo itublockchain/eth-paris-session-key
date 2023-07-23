@@ -4,4 +4,6 @@ export const API = {
   getCardGameStatus: (address: string): string =>
     `/getCardGameStatus?address=${address}`,
   getLiveCards: (address: string): string => `/getLiveCards?address=${address}`,
+  getAllCardList: (address: string): string =>
+    `/getAllCardList?address=${address}`,
 };

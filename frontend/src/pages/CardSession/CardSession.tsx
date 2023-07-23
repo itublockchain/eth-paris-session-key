@@ -13,30 +13,30 @@ const CardSession = () => {
   const gameAddress = useSelector((state: RootState) => state.game.address);
 
   const allCards = useSelector((state: RootState) => state.game.allCards);
+  // error olabilir
+  // useEffect(() => {
+  //   if (allCards.length === 0) return;
+  //   const setAllCardsApi = async () => {
+  //     console.log("Istek attim");
+  //     if (!gameAddress) return;
 
-  useEffect(() => {
-    if (allCards.length === 0) return;
-    const setAllCardsApi = async () => {
-      console.log("Istek attim");
-      if (!gameAddress) return;
+  //     console.log("Istek attim2");
+  //     const cards = await apiGetLiveCards(gameAddress);
 
-      console.log("Istek attim2");
-      const cards = await apiGetLiveCards(gameAddress);
-
-      console.log(cards);
-      if (cards) {
-        console.log(cards);
-        // dispatch(setAllCards(cards.data));
-      }
-    };
-    setAllCardsApi();
-  }, [gameAddress]);
+  //     console.log(cards);
+  //     if (cards) {
+  //       console.log(cards);
+  //       // dispatch(setAllCards(cards.data));
+  //     }
+  //   };
+  //   setAllCardsApi();
+  // }, [gameAddress]);
   return (
     <div className={styles.wrapper}>
       {<EnterGameModal modal={enterGameModal} />}
 
       <div className={styles.components}>
-        <Navbar openModal={enterGameModal.open} />
+        <Navbar openModal={enterGameModal.open} hideIt={false} />
         {gameAddress && <CardSelection />}
       </div>
       <img src={BACKGROUND} className={styles.background} alt="background" />

@@ -128,4 +128,28 @@ contract CardGame {
     function isGameOver() public view returns (bool) {
         return gameOver;
     }
+
+    struct CardExtended {
+        uint256 id;
+        uint power;
+        uint health;
+        bool isAlive;
+        bool isTaken;
+        address player;
+    }
+
+    function getAllCardList() public view returns (CardExtended[] memory) {
+        CardExtended[] memory cardList = new CardExtended[](10);
+        for (uint i = 0; i < 10; i++) {
+            cardList[i] = CardExtended(
+                cards[i].id,
+                cards[i].power,
+                cards[i].health,
+                cards[i].isAlive,
+                cards[i].isTaken,
+                i < 5 ? user1Address : user2Address
+            );
+        }
+        return cardList;
+    }
 }

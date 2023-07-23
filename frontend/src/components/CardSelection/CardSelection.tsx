@@ -1,7 +1,11 @@
 import styles from "./CardSelection.module.scss";
 import { CardInfo } from "store/slicers/card";
 import { Card } from "./Card/Card";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { apiGetCardGameStatus } from "restapi";
+import { useAccount } from "wagmi";
+import { RootState } from "store";
+import { useSelector } from "react-redux";
 const cardInfo: Array<CardInfo> = [
   { id: 0, heal: 4, power: 3 },
   { id: 1, heal: 6, power: 2 },
@@ -16,6 +20,22 @@ const cardInfo: Array<CardInfo> = [
 ];
 const CardSelection = () => {
   const [selectedCard, setSelectedCard] = useState<number>(-1);
+  const gameAddress = useSelector((state: RootState) => state.game.address);
+
+  const checkStatus = async () => {
+    if (!gameAddress) return;
+    const status = await apiGetCardGameStatus(gameAddress);
+    if (status && status.data.toString() && Number(status.data) === 1) {
+      window.location.href = "/fight";
+    }
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      checkStatus();
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
   return (
     <div className={styles.wrapper}>
       {cardInfo.map((card: CardInfo, i: number) => {
@@ -30,15 +50,6 @@ const CardSelection = () => {
           />
         );
       })}
-
-      <button
-        className={styles.button}
-        onClick={() => {
-          window.location.href = "/fight";
-        }}
-      >
-        Start
-      </button>
     </div>
   );
 };

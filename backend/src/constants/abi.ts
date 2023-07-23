@@ -664,6 +664,51 @@ export const ABI = {
         },
         {
             inputs: [],
+            name: 'getAllCardList',
+            outputs: [
+                {
+                    components: [
+                        {
+                            internalType: 'uint256',
+                            name: 'id',
+                            type: 'uint256',
+                        },
+                        {
+                            internalType: 'uint256',
+                            name: 'power',
+                            type: 'uint256',
+                        },
+                        {
+                            internalType: 'uint256',
+                            name: 'health',
+                            type: 'uint256',
+                        },
+                        {
+                            internalType: 'bool',
+                            name: 'isAlive',
+                            type: 'bool',
+                        },
+                        {
+                            internalType: 'bool',
+                            name: 'isTaken',
+                            type: 'bool',
+                        },
+                        {
+                            internalType: 'address',
+                            name: 'player',
+                            type: 'address',
+                        },
+                    ],
+                    internalType: 'struct CardGame.CardExtended[]',
+                    name: '',
+                    type: 'tuple[]',
+                },
+            ],
+            stateMutability: 'view',
+            type: 'function',
+        },
+        {
+            inputs: [],
             name: 'isGameOver',
             outputs: [
                 {

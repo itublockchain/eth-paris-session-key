@@ -130,6 +130,44 @@ export class GameService {
         return cards;
     }
 
+    async getAllCardList(address: string): Promise<
+        Array<
+            Array<{
+                id: string;
+                health: string;
+                power: string;
+                isTaken: boolean;
+                isAlive: boolean;
+                address?: string;
+            }>
+        >
+    > {
+        const gameContract = new ethers.Contract(
+            address,
+            ABI.cardGame,
+            this.wallet,
+        );
+        const user1Cards = [];
+        const user2Cards = [];
+        const user1 = await gameContract.user1Address();
+        const user2 = await gameContract.user2Address();
+        const tx = await gameContract.getAllCardList();
+        for (let i = 0; i < tx.length; i++) {
+            if (tx[i]['player'] === user1) {
+                const result = setCard(tx[i], user1);
+                if (result.isAlive) {
+                    user1Cards.push(result);
+                }
+            } else {
+                const result = setCard(tx[i], user2);
+                if (result.isAlive) {
+                    user2Cards.push(result);
+                }
+            }
+        }
+        return [user1Cards, user2Cards];
+    }
+
     async enterGame(address: string, playerAddress: string): Promise<string> {
         const gameContract = new ethers.Contract(
             address,
