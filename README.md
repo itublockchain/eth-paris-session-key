@@ -69,6 +69,8 @@ As a result, we have fully interoperable smart contract modules that operate wel
 
 **Card Contract and Front End components:**
 
+The contract represents a simple card game where players can enter, choose cards, and take turns attacking each other. The winner is determined by the player with surviving cards. There is also a GameFactory contract to create new game instances easily.
+
 **Future works:**
 
 - **Generalized Sign In, Sign Out standards for Session Keys:** It is possible to build pre-approvals, which creates a mechanism for people to use blockchain without recognizing it but users should be able to revoke the given ownership - similar to sign out.
