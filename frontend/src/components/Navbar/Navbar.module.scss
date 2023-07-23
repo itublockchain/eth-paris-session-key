@@ -15,5 +15,20 @@
         align-items: center;
         justify-content: center;
         gap: 15px;
+
+        .button {
+            height: 40px;
+            border-radius: 12px;
+            border: none;
+            font-weight: 600;
+            width: 120px;
+            background-color: white;
+            transition: all 0.2s ease;
+
+            &:hover {
+                cursor: pointer;
+                transform: scale(1.1);
+            }
+        }
     }
 }

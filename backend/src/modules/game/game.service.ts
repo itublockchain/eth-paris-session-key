@@ -127,7 +127,6 @@ export class GameService {
                 console.log(e);
             }
         }
-        console.log(cardIdsD);
         return cards;
     }
 

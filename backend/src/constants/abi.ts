@@ -573,6 +573,11 @@ export const ABI = {
                     name: 'defenderId',
                     type: 'uint256',
                 },
+                {
+                    internalType: 'address',
+                    name: 'attacker',
+                    type: 'address',
+                },
             ],
             name: 'attack',
             outputs: [],

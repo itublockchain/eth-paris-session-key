@@ -7,17 +7,20 @@ import { clsnm } from "utils/clsnm";
 import Lottie from "lottie-react";
 import { CARDIMAGES } from "constants/cards";
 import EXPLOSION from "assets/lottie/explosion.json";
+import { Cards } from "restapi/types";
 const Card = ({
   power = 9,
   heal = 9,
   location = 0,
   id,
+  keyId,
   who = "ME",
 }: {
   power: number;
   heal: number;
   location: number;
   id: number;
+  keyId: number;
   who: "ME" | "ENEMY";
 }) => {
   const dispatch = useDispatch();
@@ -70,8 +73,9 @@ const Card = ({
           attackerCards.length !== 0 &&
           defenderCards.length !== 0
             ? `translate(${setAttackLocation(
-                attackerCard,
-                defenderCard,
+                keyId,
+                getId(defenderCards, defenderCard),
+                // defenderCard,
                 attackerCards.length,
                 defenderCards.length
               )}px, -240%) scale(1.2)`
@@ -129,4 +133,13 @@ function setAttackLocation(
   }
 
   return (dLocation - aLocation) * -1;
+}
+
+function getId(cards: Array<Cards>, id: number): number {
+  for (let i = 0; i < cards.length; i++) {
+    if (cards[i].id === id) {
+      return i;
+    }
+  }
+  return 0;
 }

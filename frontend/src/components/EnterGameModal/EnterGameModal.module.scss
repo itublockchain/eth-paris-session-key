@@ -2,9 +2,47 @@
     min-width: 300px;
     background-color: #000b3a !important;
     border-radius: 12px;
-    min-height: 100px;
+    min-height: 150px;
     color: #fff;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 25px;
+    padding-bottom: 35px;
+
+    .a {
+        display: flex;
+        gap: 25px;
+
+        .button1 {
+            height: 40px;
+            border-radius: 12px;
+            border: none;
+            font-weight: 600;
+            width: 120px;
+            background-color: white;
+            transition: all 0.2s ease;
+
+            &:hover {
+                cursor: pointer;
+                transform: scale(1.1);
+            }
+        }
+
+        .button2 {
+            height: 40px;
+            border-radius: 12px;
+            border: none;
+            font-weight: 600;
+            width: 120px;
+            background-color: white;
+            transition: all 0.2s ease;
+
+            &:hover {
+                cursor: pointer;
+                transform: scale(1.1);
+            }
+        }
+    }
 }

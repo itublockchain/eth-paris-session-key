@@ -7,10 +7,11 @@ import { RootState } from "store";
 import { useEffect } from "react";
 import { setDefenderCard } from "store/slicers/card";
 import { Cards } from "restapi/types";
-
+import { useAccount } from "wagmi";
 import { useContractWrite } from "wagmi";
 import { ABI } from "constants/abi";
 const CardsFight = ({ location }: { location: "TOP" | "BOTTOM" }) => {
+  const { address } = useAccount();
   const dispatch = useDispatch();
   const attackerCard = useSelector(
     (state: RootState) => state.card.attackerCard
@@ -37,9 +38,9 @@ const CardsFight = ({ location }: { location: "TOP" | "BOTTOM" }) => {
     if (attackerCard === -1) {
       dispatch(setDefenderCard(-1));
     }
-    if (defenderCard !== -1 && attackerCard !== -1) {
+    if (defenderCard !== -1 && attackerCard !== -1 && address) {
       write({
-        args: [attackerCard, defenderCard],
+        args: [attackerCard, defenderCard, address],
       });
       setTimeout(() => {
         dispatch(setDefenderCard(-1));
@@ -59,6 +60,7 @@ const CardsFight = ({ location }: { location: "TOP" | "BOTTOM" }) => {
         defenderCards.map((card: Cards, i: number) => {
           return (
             <Card
+              keyId={i}
               id={card.id}
               key={card.id}
               heal={card.health}
@@ -72,6 +74,7 @@ const CardsFight = ({ location }: { location: "TOP" | "BOTTOM" }) => {
         attackerCards.map((card: Cards, i: number) => {
           return (
             <Card
+              keyId={i}
               id={card.id}
               key={card.id}
               heal={card.health}

@@ -19,18 +19,20 @@
 
     .power {
         position: absolute;
-        bottom: 11px;
-        left: 15.5px;
+        bottom: 19px;
+        left: 11px;
         z-index: 10;
         font-size: 20px;
+        color: black;
     }
 
     .heal {
         position: absolute;
-        bottom: 11px;
-        right: 15px;
+        bottom: 19px;
+        right: 10px;
         z-index: 10;
         font-size: 20px;
+        color: black;
     }
 
     .explosion {

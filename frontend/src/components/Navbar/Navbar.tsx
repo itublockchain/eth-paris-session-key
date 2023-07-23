@@ -14,7 +14,11 @@ const Navbar = ({ openModal }: NavbarProps) => {
       <div className={styles.logo}>CardSession</div>
       <div>-</div>
       <div className={styles.buttons}>
-        {address && <button onClick={openModal}>Enter Game</button>}
+        {address && (
+          <button onClick={openModal} className={styles.button}>
+            Enter Game
+          </button>
+        )}
         <ConnectButton showBalance={false} chainStatus={"none"} />
       </div>
     </div>

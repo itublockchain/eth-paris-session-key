@@ -50,12 +50,23 @@ const EnterGameModal = ({ modal }: { modal: ModalController }) => {
 
   return (
     <Modal isOpen={modal.isOpen} close={modal.close} className={styles.wrapper}>
-      {!gameAddress ? (
-        <button onClick={handleSearchClick}>Search Game</button>
-      ) : (
-        <button onClick={handleEnterClick}>Enter Game</button>
-      )}
-      {!gameAddress && <button onClick={handleCreateClick}>Create Game</button>}
+      <div>Welcome to SessionCard</div>
+      <div className={styles.a}>
+        {!gameAddress ? (
+          <button onClick={handleSearchClick} className={styles.button1}>
+            Search Game
+          </button>
+        ) : (
+          <button onClick={handleEnterClick} className={styles.button1}>
+            Enter Game
+          </button>
+        )}
+        {!gameAddress && (
+          <button className={styles.button2} onClick={handleCreateClick}>
+            Create Game
+          </button>
+        )}
+      </div>
     </Modal>
   );
 };
