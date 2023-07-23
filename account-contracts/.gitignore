@@ -4,6 +4,8 @@ coverage
 coverage.json
 typechain
 typechain-types
+.pnp.cjs
+.pnp.loader.mjs
 
 # Hardhat files
 cache
