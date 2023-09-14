@@ -114,9 +114,11 @@ contract CardGame {
             }
             if (user1DeadCardCount == 5) {
                 winner = user2Address;
+                gameOver = true;
                 emit GameOvered(winner);
             } else if (user2DeadCardCount == 5) {
                 winner = user1Address;
+                gameOver = true;
                 emit GameOvered(winner);
             }
         } else {
